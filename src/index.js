@@ -10,8 +10,6 @@ ReactDOM.render(
     {/* <App /> */}
     <Switch>
       <Route exact path='/' component={BooksApp}></Route>
-    </Switch>
-    <Switch>
       <Route path='/search' component={Search}></Route>
     </Switch>
   </Router>,

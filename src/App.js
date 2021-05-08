@@ -12,23 +12,40 @@ import * as BooksAPI from "./BooksAPI";
 
 //styling
 import "./App.css";
+// import Search from "./components/Search";
 
 //main App
 const BooksApp = () => {
-  const [booksLibrary, setBookslibrary] = useState([]);
-  const shelfNames = ["Currently Reading", "Want to Read", "Read"];
+  const [books, setBooks] = useState([]);
+  const [currentShelf, setCurrentShelf] = useState(books);
+
+  // const shelfKeys = ["currentlyReading", "wantToRead", "read"];
+  // const shelfTitles = ["Currently Reading", "Want to Read", "Read"];
+  const shelfNames = [
+    { id: "currentlyReading", name: "Currently Reading" },
+    { id: "wantToRead", name: "Want to Read" },
+    { id: "read", name: "Read" },
+  ];
 
   //Get books from API
   useEffect(() => {
     const fetchBooks = async () => {
       const getBooksFromServer = await BooksAPI.getAll();
-      setBookslibrary(getBooksFromServer);
+      setBooks(getBooksFromServer);
       console.log(getBooksFromServer);
     };
     fetchBooks();
   }, []);
 
   //todo update shelf
+  // useEffect(() => {
+  //   const bookShelfUpdate = async () => {
+  //     const updateShelf = await BooksAPI.update(id);
+  //   };
+  //   return () => {
+  //     cleanup;
+  //   };
+  // }, []);
 
   //todo search in bar
 
@@ -40,7 +57,12 @@ const BooksApp = () => {
         </div>
         <div className='list-books-content'>
           <div>
-            <Shelf shelfNames={shelfNames} books={booksLibrary} />
+            <Shelf
+              shelfNames={shelfNames}
+              books={books}
+              currentShelf={currentShelf}
+              setShelf={setCurrentShelf}
+            />
           </div>
         </div>
         <div className='open-search'>
