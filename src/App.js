@@ -17,7 +17,7 @@ import "./App.css";
 //main App
 const BooksApp = () => {
   const [books, setBooks] = useState([]);
-  const [currentShelf, setCurrentShelf] = useState(books);
+  const [currentShelf, setCurrentShelf] = useState();
 
   // const shelfKeys = ["currentlyReading", "wantToRead", "read"];
   // const shelfTitles = ["Currently Reading", "Want to Read", "Read"];
@@ -38,6 +38,7 @@ const BooksApp = () => {
   }, []);
 
   //todo update shelf
+
   // useEffect(() => {
   //   const bookShelfUpdate = async () => {
   //     const updateShelf = await BooksAPI.update(id);

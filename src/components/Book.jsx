@@ -1,3 +1,5 @@
+import BookChanger from "./BookChanger";
+
 const Book = ({ book, currentShelf, setShelf }) => {
   return (
     <div key={book.id} className='book'>
@@ -10,17 +12,11 @@ const Book = ({ book, currentShelf, setShelf }) => {
             backgroundImage: `url(${book.imageLinks.thumbnail}`,
           }}
         />
-        <div className='book-shelf-changer'>
-          <select onChange={(e) => setShelf(e.target.value)}>
-            <option value='move' disabled>
-              Move to...
-            </option>
-            <option value='currentlyReading'>Currently Reading</option>
-            <option value='wantToRead'>Want to Read</option>
-            <option value='read'>Read</option>
-            <option value='none'>None</option>
-          </select>
-        </div>
+        <BookChanger
+          book={book}
+          currentShelf={currentShelf}
+          onChange={setShelf}
+        />
       </div>
       <div className='book-title'>{book.title}</div>
       {book.authors.map((author) => (
